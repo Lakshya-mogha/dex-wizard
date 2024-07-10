@@ -20,9 +20,10 @@ import {
 
 const columnHelper = createColumnHelper();
 export const column: any = [
-  columnHelper.accessor("background_image", {
-    cell: (url) => (
-      <Image src={`/${url.getValue()}`} alt="" width={500} height={500} />
+  columnHelper.accessor("image", {    
+    cell: (image) => (
+      <Image src={image.getValue()} alt="" width={20} height={20} />
+      
     ),
   }),
   {
