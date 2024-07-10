@@ -1,7 +1,9 @@
 "use client";
 import { coinsType } from "@/sampleData";
+import Image from "next/image";
 import {
   ColumnDef,
+  createColumnHelper,
   flexRender,
   getCoreRowModel,
   useReactTable,
@@ -16,11 +18,13 @@ import {
   TableHeader,
 } from "../ui/table";
 
-export const column: ColumnDef<coinsType>[] = [
-  {
-    accessorKey: "image",
-    header: "",
-  },
+const columnHelper = createColumnHelper();
+export const column: any = [
+  columnHelper.accessor("background_image", {
+    cell: (url) => (
+      <Image src={`/${url.getValue()}`} alt="" width={500} height={500} />
+    ),
+  }),
   {
     accessorKey: "name",
     header: "name",
