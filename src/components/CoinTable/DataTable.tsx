@@ -1,5 +1,4 @@
 "use client";
-import { coinsType } from "@/sampleData";
 import Image from "next/image";
 import {
   ColumnDef,
@@ -17,9 +16,10 @@ import {
   TableHead,
   TableHeader,
 } from "../ui/table";
+import { useRouter } from "next/navigation";
 
 const columnHelper = createColumnHelper();
-export const column: any = [
+export const column:any = [
   columnHelper.accessor("image", {    
     cell: (image) => (
       <Image src={image.getValue()} alt="" width={20} height={20} />
@@ -60,6 +60,7 @@ export function DataTable<TData, TValue>({
   columns,
   data,
 }: CoinTableProps<TData, TValue>) {
+  const router = useRouter();
   const table = useReactTable({
     data,
     columns,
@@ -89,14 +90,16 @@ export function DataTable<TData, TValue>({
         <TableBody>
           {table.getRowModel().rows?.length ? (
             table.getRowModel().rows.map((row) => (
+             
               <TableRow
                 key={row.id}
                 data-state={row.getIsSelected() && "selected"}
+                onClick={()=> router.push(`coins/${row.getValue("name")}`)}
               >
                 {row.getVisibleCells().map((cell) => (
                   <TableCell key={cell.id}>
-                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                  </TableCell>
+                  {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                </TableCell>
                 ))}
               </TableRow>
             ))
