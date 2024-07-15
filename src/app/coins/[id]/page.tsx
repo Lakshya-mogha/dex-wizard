@@ -1,6 +1,5 @@
 import React from "react";
 import Chart from "../../../components/chart/Chart";
-import { json } from "stream/consumers";
 
 function page({ params }: { params: { id: string } }) {
   const id = params.id;
@@ -8,7 +7,7 @@ function page({ params }: { params: { id: string } }) {
   console.log(params);
   
 
-  const Coin = JSON.parse(id)
+  const Coin = id
   return (
     <>
       hello this is {Coin}

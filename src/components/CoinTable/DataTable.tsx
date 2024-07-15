@@ -94,7 +94,11 @@ export function DataTable<TData, TValue>({
               <TableRow
                 key={row.id}
                 data-state={row.getIsSelected() && "selected"}
-                onClick={()=> router.push(`coins/${row.getValue("name")}`)}
+                onClick={()=> {
+                  const id:string = row.getValue("name");
+                  const coinId = id.toString().toLowerCase();
+                  router.push(`coins/${coinId}`)
+                }}
               >
                 {row.getVisibleCells().map((cell) => (
                   <TableCell key={cell.id}>
