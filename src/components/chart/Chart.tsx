@@ -3,7 +3,8 @@ import React from "react";
 import Candles from "./Candles";
 import axios from "axios";
 
-function Chart(id: any) {
+function Chart({id}:any) {
+  console.log(typeof id);
   const Data = getData(id);
   return (
     <div>
@@ -12,10 +13,12 @@ function Chart(id: any) {
   );
 }
 
-async function getData(id: string) {
+async function getData( id: any) {
+
+  
   const options = {
     method: "GET",
-    url: `https://api.coingecko.com/api/v3/coins/${id}/ohlc?vs_currency=usd&days=14s&interval=hourly`,
+    url: `https://api.coingecko.com/api/v3/coins/${id}/ohlc?vs_currency=usd&days=14`,
     headers: {
       accept: "localhost:3000",
       "x-cg-api-key": process.env.COINGECKO_API_KEY,

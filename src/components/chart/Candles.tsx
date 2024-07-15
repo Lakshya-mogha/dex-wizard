@@ -4,7 +4,7 @@ import {useEffect, useRef} from 'react'
 
 
 
-function Candles(data:any) {
+function Candles({data}:any) {
     const chartContainer = useRef<HTMLDivElement | null>(null);
     const coinData = data
     useEffect(() => {
