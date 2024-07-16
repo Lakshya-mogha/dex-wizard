@@ -1,40 +1,58 @@
 "use client";
-import { ColorType, createChart } from 'lightweight-charts';
-import {useEffect, useRef} from 'react'
+import { ColorType, createChart } from "lightweight-charts";
+import { useEffect, useRef } from "react";
 
+function APIDataFormate(data: any) {
+  const candleFormattedData: any = [];
 
+  for (let i = 0; i < data.length; i++) {
 
-function Candles({data}:any) {
-    const chartContainer = useRef<HTMLDivElement | null>(null);
-    const coinData = data
-    useEffect(() => {
-        const fetchDataAndSetChart = () => {
-            const chart = createChart(chartContainer.current as HTMLElement, {
-                layout: {
-                    background: {type: ColorType.Solid, color: "white"}
-                },
-                width: 700,
-                height: 400,
-            });
+    const formatDate = data[i][0]/1000
+    const formattedData = {
+      time: formatDate,
+      open: data[i][1],
+      high: data[i][2],
+      low: data[i][3],
+      close: data[i][4],
+    };
 
-            const newSeries = chart.addCandlestickSeries({
-                upColor: '#26a69a', downColor: '#ef5350', borderVisible: false,
-                wickUpColor: '#26a69a', wickDownColor: '#ef5350',
-            });
+    candleFormattedData.push(formattedData);
+  }
+  return candleFormattedData;
+}
 
-            newSeries.setData(coinData);
+function Candles({ data }: any) {
+  const chartContainer = useRef<HTMLDivElement | null>(null);
+  const coinData = APIDataFormate(data);
 
-            return () => {
-                chart.remove();
-            };
-        };
+  useEffect(() => {
+    const fetchDataAndSetChart = () => {
+      const chart = createChart(chartContainer.current as HTMLElement, {
+        layout: {
+          background: { type: ColorType.Solid, color: "white" },
+        },
+        width: 700,
+        height: 400,
+      });
 
-        fetchDataAndSetChart();
-    }, []);
+      const newSeries = chart.addCandlestickSeries({
+        upColor: "#26a69a",
+        downColor: "#ef5350",
+        borderVisible: false,
+        wickUpColor: "#26a69a",
+        wickDownColor: "#ef5350",
+      });
 
-  return (
-    <div ref={chartContainer}></div>
-  )
+      newSeries.setData(coinData);
+      return () => {
+        chart.remove();
+      };
+    };
+
+    fetchDataAndSetChart();
+  }, []);
+
+  return <div ref={chartContainer}></div>;
 }
 
 export default Candles;

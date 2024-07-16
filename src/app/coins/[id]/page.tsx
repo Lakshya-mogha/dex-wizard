@@ -3,9 +3,7 @@ import Chart from "../../../components/chart/Chart";
 
 function page({ params }: { params: { id: string } }) {
   const id = params.id;
-  console.log(typeof id);
-  // console.log(params);
-  
+
 
   const Coin = id
   return (
