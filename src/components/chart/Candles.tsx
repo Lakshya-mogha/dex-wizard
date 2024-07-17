@@ -43,6 +43,13 @@ function Candles({ data }: any) {
         wickDownColor: "#ef5350",
       });
 
+      chart.applyOptions({
+        timeScale: {
+          visible: true,
+          timeVisible: true,
+        },
+      });
+
       newSeries.setData(coinData);
       return () => {
         chart.remove();

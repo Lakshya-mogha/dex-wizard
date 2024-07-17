@@ -1,7 +1,7 @@
 "use server"
 import React from "react";
 import { DataTable, column } from "./DataTable";
-import {coinsType } from "@/sampleData";
+import {coins, coinsType } from "@/sampleData";
 import axios from 'axios';
 
 async function getData(): Promise<coinsType[]>{
@@ -24,7 +24,8 @@ return await axios
 
 }
 async function CoinTable() {
-  const data = await getData();
+  let data = await getData();
+  // const data = coins 
   return <DataTable columns={column} data={data} />;
 }
 

@@ -19,11 +19,10 @@ import {
 import { useRouter } from "next/navigation";
 
 const columnHelper = createColumnHelper();
-export const column:any = [
-  columnHelper.accessor("image", {    
+export const column: any = [
+  columnHelper.accessor("image", {
     cell: (image) => (
-      <Image src={image.getValue()} alt="" width={20} height={20} />
-      
+      <Image src={image.getValue()} alt="" width={25} height={20} />
     ),
   }),
   {
@@ -67,9 +66,9 @@ export function DataTable<TData, TValue>({
     getCoreRowModel: getCoreRowModel(),
   });
   return (
-    <div className="h-24 text-center">
-      <Table>
-        <TableHeader>
+    <div className="m-[2rem]">
+      <Table className=" border-2">
+        <TableHeader className="font-inter">
           {table.getHeaderGroups().map((headerGroup) => (
             <TableRow key={headerGroup.id}>
               {headerGroup.headers.map((header) => {
@@ -87,23 +86,22 @@ export function DataTable<TData, TValue>({
             </TableRow>
           ))}
         </TableHeader>
-        <TableBody>
+        <TableBody className=" font-lora">
           {table.getRowModel().rows?.length ? (
             table.getRowModel().rows.map((row) => (
-             
               <TableRow
                 key={row.id}
                 data-state={row.getIsSelected() && "selected"}
-                onClick={()=> {
-                  const id:string = row.getValue("name");
+                onClick={() => {
+                  const id: string = row.getValue("name");
                   const coinId = id.toString().toLowerCase();
-                  router.push(`coins/${coinId}`)
+                  router.push(`coins/${coinId}`);
                 }}
               >
                 {row.getVisibleCells().map((cell) => (
-                  <TableCell key={cell.id}>
-                  {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                </TableCell>
+                  <TableCell key={cell.id} className="font-lora">
+                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                  </TableCell>
                 ))}
               </TableRow>
             ))
