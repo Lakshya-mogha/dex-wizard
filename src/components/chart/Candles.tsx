@@ -5,9 +5,8 @@ import { useEffect, useRef } from "react";
 function APIDataFormate(data: any) {
   const candleFormattedData: any = [];
 
-  for (let i = 0; i < data.length; i++) {
-
-    const formatDate = data[i][0]/1000
+  for (let i = 0; i < data.length ; i++) {
+    const formatDate = data[i][0] / 1000;
     const formattedData = {
       time: formatDate,
       open: data[i][1],

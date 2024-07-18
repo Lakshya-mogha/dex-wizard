@@ -5,7 +5,7 @@ import axios from "axios";
 
 async function Chart({ id }: any) {
   const Data = await getData(id);
-  
+
   return (
     <div>
       <Candles data={Data} />
@@ -26,7 +26,6 @@ async function getData(id: any) {
   return await axios
     .request(options)
     .then(function (response: any) {
-      
       return response.data;
     })
     .catch(function (error: any) {

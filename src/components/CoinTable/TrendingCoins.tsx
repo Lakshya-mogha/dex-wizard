@@ -35,8 +35,8 @@ async function TrendingCoins() {
   // console.log("this is data" ,data);
 
   return (
-    <div className="m-[2rem] w-[40rem]">
-      <Table className="border-2">
+    <div className="mx-[4rem] mt-[2rem] w-[40rem] bg-white">
+      <Table className="border-2 ">
         <TableHeader>
           <TableRow>
             <TableHead>Trending coins </TableHead>
@@ -96,7 +96,7 @@ async function TrendingCoins() {
             <TableCell>{data.coins[2].item.data.price}</TableCell>
             <TableCell
               className={
-                data.coins[0].item.data.price_change_percentage_24h.usd <= 0
+                data.coins[2].item.data.price_change_percentage_24h.usd <= 0.000
                   ? "text-red-500"
                   : "text-green-500"
               }

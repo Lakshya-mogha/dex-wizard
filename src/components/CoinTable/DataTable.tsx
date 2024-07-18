@@ -27,19 +27,19 @@ export const column: any = [
   }),
   {
     accessorKey: "name",
-    header: "name",
+    header: "Name",
   },
   {
     accessorKey: "current_price",
-    header: "price",
+    header: "Price",
   },
   {
     accessorKey: "market_cap",
-    header: "mcap",
+    header: "Mcap",
   },
   {
     accessorKey: "total_volume",
-    header: "volume",
+    header: "Volume",
   },
   {
     accessorKey: "price_change_percentage_24h",
@@ -47,7 +47,7 @@ export const column: any = [
   },
   {
     accessorKey: "circulating_supply",
-    header: "supply",
+    header: "Supply",
   },
 ];
 
@@ -66,8 +66,8 @@ export function DataTable<TData, TValue>({
     getCoreRowModel: getCoreRowModel(),
   });
   return (
-    <div className="m-[2rem]">
-      <Table className=" border-2">
+    <div className="p-[4rem] ">
+      <Table className=" border-2 bg-white">
         <TableHeader className="font-inter">
           {table.getHeaderGroups().map((headerGroup) => (
             <TableRow key={headerGroup.id}>
@@ -99,7 +99,9 @@ export function DataTable<TData, TValue>({
                 }}
               >
                 {row.getVisibleCells().map((cell) => (
-                  <TableCell key={cell.id} className="font-lora">
+                  <TableCell key={cell.id} className={
+                    cell.column.id === "price_change_percentage_24h" ? (cell.getValue() as number < 0 )? "text-red-500" : "text-green-500" : "text-black"
+                  }>
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                   </TableCell>
                 ))}

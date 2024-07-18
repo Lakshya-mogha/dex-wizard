@@ -4,7 +4,6 @@ import TrendingCoins from "@/components/CoinTable/TrendingCoins";
 export default function Home() {
   return (
     <>
-      <Navbar />
       <TrendingCoins/>
       <CoinTable/>
     </>

@@ -68,7 +68,7 @@ export const coins : coinsType[] = [
     "high_24h": 70215,
     "low_24h": 68060,
     "price_change_24h": 2126.88,
-    "price_change_percentage_24h": 3.12502,
+    "price_change_percentage_24h": -3.12502,
     "market_cap_change_24h": 44287678051,
     "market_cap_change_percentage_24h": 3.31157,
     "circulating_supply": 19675987,
